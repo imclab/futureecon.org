@@ -1,10 +1,13 @@
+#outputs a list of the number of access calls to an apache site by minute to stddev
+
 #!/usr/bin/perl
 $minute = 0;
 $hour = 0;
 $max = -1;
 $maxhour = 00;
 $maxminute = 00;
-$file = @ARGV[0];
+$file = @ARGV[0];          #log file name
+$targetDate = @ARGV[1];    #date we're looking for. format ##/Apr/20##
 print "working on - ", $file;
 do
 {
@@ -14,22 +17,22 @@ do
 		{
 			if ($minute < 10)
 			{
-				$result = `grep "26/Apr/2013:0${hour}:0${minute}" ${file} -c`;
+				$result = `grep "${targetDate}:0${hour}:0${minute}" ${file} -c`;
 			}
 			else
 			{
-				$result = `grep "26/Apr/2013:0${hour}:${minute}" ${file} -c`;
+				$result = `grep "${targetDate}:0${hour}:${minute}" ${file} -c`;
 			}
 		}
 		else
 		{
 			if ($minute < 10)
 			{
-				$result = `grep "26/Apr/2013:${hour}:0${minute}" ${file} -c`;
+				$result = `grep "${targetDate}:${hour}:0${minute}" ${file} -c`;
 			}
 			else
 			{
-				$result = `grep "26/Apr/2013:${hour}:${minute}" ${file} -c`;
+				$result = `grep "${targetDate}:${hour}:${minute}" ${file} -c`;
 			}
 		}
 		print $hour, ":", $minute, ",", $result;
