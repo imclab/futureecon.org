@@ -1,4 +1,5 @@
 #outputs a list of the number of access calls to an apache site by minute to stddev
+#random and arbitrary change
 
 #!/usr/bin/perl
 $minute = 0;
